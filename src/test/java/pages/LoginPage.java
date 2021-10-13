@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -16,15 +17,26 @@ public class LoginPage extends BasePage{
         super(driver);
     }
 
-    public void open() {
+    @Override
+    public LoginPage open() {
         driver.get(BASE_URL);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON_LOCATOR));
+        return this;
     }
 
-    public void login(String user, String password) {
+    public boolean isPageOpened() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON_LOCATOR));
+        } catch (TimeoutException exception) {
+            return false;
+        }
+        return true;
+    }
+
+    public HomePage login(String user, String password) {
         driver.findElement(USERNAME_LOCATOR).sendKeys(user);
         driver.findElement(PASSWORD_LOCATOR).sendKeys(password);
         driver.findElement(LOGIN_BUTTON_LOCATOR).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(SUCCESS_LOGIN_LOCATOR));
+        return new HomePage(driver);
     }
 }

@@ -1,4 +1,4 @@
-package pages;
+package wrappers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +15,8 @@ public class Checkbox {
         this.label=label;
     }
 
-    public void choose() {
+    public Checkbox choose() {
         driver.findElement(By.xpath(String.format(locator, label))).click();
+        return this;
     }
 }
