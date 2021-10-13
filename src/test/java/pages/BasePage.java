@@ -22,10 +22,10 @@ public abstract class BasePage {
 
     public abstract BasePage open();
 
-    public boolean isPageOpened(String page_name) {
+    public boolean isPageOpened(String pageName) {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(PAGE_OPENED_LOCATOR,
-                    page_name))));
+                    pageName))));
         } catch (TimeoutException exception) {
             return false;
         }
