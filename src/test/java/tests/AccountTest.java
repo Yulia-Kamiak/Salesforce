@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Issue;
+import io.qameta.allure.TmsLink;
 import models.Account;
 import models.AccountFactory;
 import org.testng.annotations.Test;
@@ -9,6 +11,8 @@ public class AccountTest extends BaseTest {
 
     Account account;
 
+    @TmsLink("teachmeskills")
+    @Issue("dev.by")
     @Test(description = "user can create an account")
     public void createAccount() {
         boolean isHomePageOpened = loginPage
