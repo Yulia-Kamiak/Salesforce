@@ -10,14 +10,19 @@ import static org.testng.Assert.assertTrue;
 public class AccountTest extends BaseTest {
 
     Account account;
+    String user;
+    String password;
 
     @TmsLink("teachmeskills")
     @Issue("dev.by")
     @Test(description = "user can create an account")
     public void createAccount() {
+
+        user = System.getenv().getOrDefault("SF_USER", "");
+        password = System.getenv().getOrDefault("SF_PASSWORD", "");
         boolean isHomePageOpened = loginPage
                 .open()
-                .login("yulion-28-fkcq@force.com", "password555")
+                .login(user, password)
                 .isPageOpened("Home");
         assertTrue(isHomePageOpened, "HomePage isn't opened");
 

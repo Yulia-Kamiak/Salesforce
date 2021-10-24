@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
 
-    public static final String BASE_URL = "https://krimmaa2.my.salesforce.com/";
+    public static final String BASE_URL = System.getenv().getOrDefault("SF_URL", "");
     String PAGE_OPENED_LOCATOR = "//*[contains(@class, 'slds-grid')]//*[contains(@class, 'slds-is-active')]//*[span" +
             "[contains(text(), '%s')]]";
 
